@@ -1,15 +1,26 @@
 "use client";
 
+import { searchGiftIdeas } from "@/lib/api";
+
 interface GiftSearchBotProps {
-  onSearch: (query: string) => void;
+  onSearch: (response: any) => void;
 }
 
 export default function GiftSearchBot({ onSearch }: GiftSearchBotProps) {
+  const handleSearch = async () => {
+    try {
+      const data = await searchGiftIdeas();
+      onSearch(data.response);
+    } catch (error) {
+      console.error("Search error:", error);
+    }
+  };
+
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">Gift Search Bot</h2>
       <button
-        onClick={() => onSearch("default search")}
+        onClick={handleSearch}
         className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
       >
         Start Gift Search

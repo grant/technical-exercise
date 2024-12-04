@@ -27,8 +27,9 @@ export default function Home() {
           <ShoppingList items={shoppingList} onItemsChange={setShoppingList} />
         </div>
         <GiftSearchBot
-          onSearch={(query: string) => {
-            console.log("Search", { query, budget, shoppingList });
+          onSearch={(response) => {
+            console.log("Search", { budget, shoppingList });
+            console.log("Response", response);
           }}
         />
       </div>
