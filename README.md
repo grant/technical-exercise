@@ -25,7 +25,7 @@ The Christmas Shopping Agent is a tool that assists users in planning, organizin
 
 ```bash
 git clone https://github.com/grant/technical-exercise.git
-cd technical-exercise
+cd technical-exercise/christmas-agent
 ```
 
 2. Install dependencies:
