@@ -21,8 +21,7 @@ export async function searchGiftIdeas(
           {
             "name": "item name",
             "price": number
-          }
-          The price must be less than or equal to $${person.budget}.`;
+          }`;
       console.log("Prompt", prompt);
       const response = await fetch("/api/chat", {
         method: "POST",

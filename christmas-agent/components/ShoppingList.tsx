@@ -4,7 +4,6 @@ export interface Person {
   id: string;
   name: string;
   interests: string;
-  budget: number;
 }
 
 interface ShoppingListProps {
@@ -61,7 +60,6 @@ export default function ShoppingList({
       id: Date.now().toString(),
       name: "",
       interests: "",
-      budget: newPersonBudget,
     };
 
     // Update budgets for all people to be even
@@ -135,7 +133,7 @@ export default function ShoppingList({
               }}
               className="w-full p-2 border rounded mb-2"
             />
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <input
                 type="text"
                 placeholder="Interests"
@@ -145,19 +143,6 @@ export default function ShoppingList({
                     p.id === person.id
                       ? { ...p, interests: e.target.value }
                       : p,
-                  );
-                  onItemsChange(updated);
-                }}
-                className="p-2 border rounded"
-              />
-              <input
-                type="number"
-                placeholder="Budget"
-                value={person.budget}
-                onChange={(e) => {
-                  const newBudget = Number(e.target.value);
-                  const updated = items.map((p) =>
-                    p.id === person.id ? { ...p, budget: newBudget } : p,
                   );
                   onItemsChange(updated);
                 }}

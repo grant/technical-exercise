@@ -2,6 +2,8 @@
 
 An intelligent agent designed to help you manage and optimize your Christmas shopping experience.
 
+https://www.loom.com/share/fe71766d580e4108af1957d37f426515
+
 ## Overview
 
 The Christmas Shopping Agent is a tool that assists users in planning, organizing, and optimizing their holiday shopping. It helps reduce the stress of holiday shopping while ensuring you find the perfect gifts for everyone on your list.
@@ -54,28 +56,15 @@ The application will be available at `http://localhost:3000`
 2. Enter your budget per person at the top
 3. Add people to your list with:
    - Name
-   - Interests and hobbies
-   - Age
-   - Individual budget
+   - Interests
 4. Review the budget breakdown shown at the top
 
 ### Using the Gift Search Bot
 
 1. Click "Start Gift Search" to activate the bot
 2. The bot will search for gifts matching each person's preferences
-3. For each suggestion you can:
-   - Lock it in as a final gift choice
-   - Reject it to get new suggestions
-4. The top bar shows:
+3. The top bar shows:
    - Amount spent so far
-
-### Managing Gift Selections
-
-- Locked gifts are added to your final list
-- Click "Search More" to find additional options for anyone
-- Easily adjust budgets and preferences to get new suggestions
-- See all chosen gifts and remaining budget at a glance
-- Export your final gift list with links and prices
 
 ## FAQ
 
