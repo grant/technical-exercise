@@ -4,13 +4,13 @@ export interface Person {
   id: string;
   name: string;
   interests: string;
-  age: number;
   budget: number;
 }
 
 interface ShoppingListProps {
   items: Person[];
   onItemsChange: (items: Person[]) => void;
+  totalBudget: number;
 }
 
 const RANDOM_NAMES = [
@@ -52,34 +52,42 @@ const RANDOM_INTERESTS = [
 export default function ShoppingList({
   items,
   onItemsChange,
+  totalBudget,
 }: ShoppingListProps) {
   const addPerson = () => {
+    const newPersonBudget =
+      items.length === 0 ? totalBudget : totalBudget / (items.length + 1);
     const newPerson: Person = {
       id: Date.now().toString(),
       name: "",
       interests: "",
-      age: 0,
-      budget: 0,
+      budget: newPersonBudget,
     };
-    onItemsChange([...items, newPerson]);
+
+    // Update budgets for all people to be even
+    const updatedItems = items.map((item) => ({
+      ...item,
+      budget: newPersonBudget,
+    }));
+
+    onItemsChange([...updatedItems, newPerson]);
   };
 
   const generateRandomFamily = () => {
     const familySize = Math.floor(Math.random() * 4) + 2; // 2-5 people
+    const budgetPerPerson = Math.round((totalBudget / familySize) * 100) / 100;
+
     const randomFamily: Person[] = Array.from({ length: familySize }, () => {
       const randomName =
         RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)];
       const randomInterests =
         RANDOM_INTERESTS[Math.floor(Math.random() * RANDOM_INTERESTS.length)];
-      const randomAge = Math.floor(Math.random() * 70) + 1;
-      const randomBudget = Math.floor(Math.random() * 190) + 10; // 10-200
 
       return {
         id: Date.now().toString() + Math.random(),
         name: randomName,
         interests: randomInterests,
-        age: randomAge,
-        budget: randomBudget,
+        budget: budgetPerPerson,
       };
     });
 
@@ -99,9 +107,15 @@ export default function ShoppingList({
           </button>
           <button
             onClick={addPerson}
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 mr-2"
           >
-            Add Person
+            Add
+          </button>
+          <button
+            onClick={() => onItemsChange(items.slice(0, -1))}
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Remove
           </button>
         </div>
       </div>
@@ -121,7 +135,7 @@ export default function ShoppingList({
               }}
               className="w-full p-2 border rounded mb-2"
             />
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Interests"
@@ -138,27 +152,12 @@ export default function ShoppingList({
               />
               <input
                 type="number"
-                placeholder="Age"
-                value={person.age}
-                onChange={(e) => {
-                  const updated = items.map((p) =>
-                    p.id === person.id
-                      ? { ...p, age: Number(e.target.value) }
-                      : p,
-                  );
-                  onItemsChange(updated);
-                }}
-                className="p-2 border rounded"
-              />
-              <input
-                type="number"
                 placeholder="Budget"
                 value={person.budget}
                 onChange={(e) => {
+                  const newBudget = Number(e.target.value);
                   const updated = items.map((p) =>
-                    p.id === person.id
-                      ? { ...p, budget: Number(e.target.value) }
-                      : p,
+                    p.id === person.id ? { ...p, budget: newBudget } : p,
                   );
                   onItemsChange(updated);
                 }}

@@ -35,7 +35,7 @@ npm install
 ```
 
 3. Set up environment variables:
-- Copy `.env.example` to `.env`
+- In `christmas-agent/`, copy `.env.example` to `.env`
 - Update the necessary API keys and configuration
 
 4. Start the development server:
@@ -51,7 +51,7 @@ The application will be available at `http://localhost:3000`
 ### Creating Your Gift Shopping List
 
 1. Click "New Shopping List" on the dashboard
-2. Enter your total budget at the top
+2. Enter your budget per person at the top
 3. Add people to your list with:
    - Name
    - Interests and hobbies
@@ -67,9 +67,7 @@ The application will be available at `http://localhost:3000`
    - Lock it in as a final gift choice
    - Reject it to get new suggestions
 4. The top bar shows:
-   - Total budget remaining
    - Amount spent so far
-   - Number of people still needing gifts
 
 ### Managing Gift Selections
 
