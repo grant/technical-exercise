@@ -30,6 +30,7 @@ export default function Home() {
           <BudgetOverview
             totalBudget={budgetPerPerson * shoppingList.length}
             onBudgetChange={setBudgetPerPerson}
+            budgetPerPerson={budgetPerPerson}
             spent={spent}
           />
           <ShoppingList

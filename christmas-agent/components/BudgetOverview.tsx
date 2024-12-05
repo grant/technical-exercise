@@ -1,14 +1,18 @@
 "use client";
 
+import { useState } from "react";
+
 interface BudgetOverviewProps {
   totalBudget: number;
   spent: number;
+  budgetPerPerson: number;
   onBudgetChange: (budget: number) => void;
 }
 
 export default function BudgetOverview({
   totalBudget,
   spent,
+  budgetPerPerson,
   onBudgetChange,
 }: BudgetOverviewProps) {
   const progressPercentage =
@@ -32,13 +36,11 @@ export default function BudgetOverview({
           </label>
           <input
             type="number"
-            value={totalBudget}
-            min="0"
-            onChange={(e) =>
-              onBudgetChange(
-                Math.max(0, Number(Number(e.target.value).toFixed(2))),
-              )
-            }
+            value={budgetPerPerson}
+            onChange={(e) => {
+              const value = Number(e.target.value);
+              onBudgetChange(value);
+            }}
             className="w-full p-2 border rounded"
           />
         </div>
